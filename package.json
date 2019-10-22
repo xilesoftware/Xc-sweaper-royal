@@ -28,6 +28,8 @@
         "@fortawesome/free-brands-svg-icons": "^5.11.2",
         "@fortawesome/free-regular-svg-icons": "^5.11.2",
         "@fortawesome/free-solid-svg-icons": "^5.11.2",
-        "@fortawesome/vue-fontawesome": "^0.1.7"
+        "@fortawesome/vue-fontawesome": "^0.1.7",
+        "laravel-echo": "^1.6.1",
+        "pusher-js": "^5.0.2"
     }
 }
