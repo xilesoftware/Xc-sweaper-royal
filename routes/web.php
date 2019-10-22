@@ -20,3 +20,5 @@ Auth::routes();
 Route::get('/app', function () {
     return view('app');
 })->name('app');
+
+Route::post('/message', 'MessageController@store')->name('message.store');
