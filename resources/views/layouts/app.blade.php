@@ -21,6 +21,9 @@
 </head>
 <body>
     <div id="app">
+     @guest
+     <h1><b>X-SWEEPER ROYALE</b></h1>
+      @else
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/app') }}">Play <font-awesome-icon icon="play" size="xs" :style="{ color: 'green' }" /></a>
@@ -37,16 +40,9 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
+
+
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -67,12 +63,12 @@
                                     </form>
                                 </div>
                             </li>
-                        @endguest
+
                     </ul>
                 </div>
             </div>
         </nav>
-
+     @endguest
         <main class="py-4">
             @yield('content')
         </main>
