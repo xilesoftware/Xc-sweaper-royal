@@ -29,7 +29,7 @@ Route::get('/testgrid', function () {
         'x' => 50,
         'y' => 25
     ];
-    $mineCount = ceil(($mapSize['y'] * $mapSize['x']) * 0.5);
+    $mineCount = ceil(($mapSize['y'] * $mapSize['x']) * 0.25);
 
     // Generate map
     for($y = 0; $y < $mapSize['y']; $y++){
@@ -53,8 +53,71 @@ Route::get('/testgrid', function () {
         }
     }
 
+    function checkCell($map, $x, $y){
+        $cell = $map[$y][$x];
+        $nearbyMines = 0;
+        $result = [
+            'x' => $x,
+            'y' => $y,
+            'mine' => false,
+            'nearby' => null,
+            'player' => 3,
+        ];
+
+        if($cell['type'] == 'mine'){
+            $result['mine'] = true;
+
+            return $result;
+        }
+
+        // N
+        if($map[$y][$x - 1]['type'] == "mine"){
+            $nearbyMines++;
+        }
+
+        // NE
+        if($map[$y + 1][$x - 1]['type'] == "mine"){
+            $nearbyMines++;
+        }
+
+        // E
+        if($map[$y + 1][$x]['type'] == "mine"){
+            $nearbyMines++;
+        }
+
+        // SE
+        if($map[$y + 1][$x + 1]['type'] == "mine"){
+            $nearbyMines++;
+        }
+
+        // S
+        if($map[$y][$x + 1]['type'] == "mine"){
+            $nearbyMines++;
+        }
+
+        // SW
+        if($map[$y - 1][$x + 1]['type'] == "mine"){
+            $nearbyMines++;
+        }
+
+        // W
+        if($map[$y - 1][$x]['type'] == "mine"){
+            $nearbyMines++;
+        }
+
+        // NW
+        if($map[$y - 1][$x - 1]['type'] == "mine"){
+            $nearbyMines++;
+        }
+
+        $result['nearby'] = $nearbyMines;
+
+        return $result;
+    }
+
     return view('testgrid')->with([
-        'map' => $map
+        'map' => $map,
+        'check' => checkCell($map, 19, 3)
     ]);
 })->name('map');
 
