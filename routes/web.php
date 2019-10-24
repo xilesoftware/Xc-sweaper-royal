@@ -17,9 +17,17 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/app', function () {
-    return view('app');
-})->name('app');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/{vue}', function () {
+        return view('app');
+    })->where('vue', '[\/\w\.-]*');
+});
+
+Route::namespace('api')->prefix('api')->group(function () {
+    Route::get('user', function () {
+        return \Auth::user();
+    });
+});
 
 
 Route::get('/testgrid', function () {
