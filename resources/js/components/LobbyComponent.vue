@@ -10,7 +10,7 @@
                         You are in the lobby
                         <input name="message" v-model="playerMessage" class="form-control" />
                         <button class="btn btn-primary" @click.prevent="sendMessage">Send</button>
-                        <p v-for="(msg, index) in messages" :key="index" v-text="msg"></p>
+                        <p v-for="(msg, index) in messages" :key="index">{{ msg.timestamp }} - {{ msg.username }}: {{ msg.message }}</p>
                     </div>
                 </div>
             </div>
@@ -19,6 +19,8 @@
 </template>
 
 <script>
+    import moment from 'moment';
+
     export default {
         data:() => ({
             message: '',
@@ -26,12 +28,23 @@
             playerMessage: '',
         }),
 
+        computed: {
+            user() {
+                return this.$store.state.user;
+            }
+        },
+
         methods: {
             createMessageChanel() {
                 window.Echo.channel('messages')
                     .listen('.send-message', (e) => {
-                        this.messages.push(e.message);
-                        console.log(e, e.message);
+                        let data = {
+                            timestamp: moment().format('HH:mm:ss'),
+                            message: e.message,
+                            username: this.user.username
+                        }
+                        this.messages.push(data);
+                        console.log(e, data);
                     });
             },
 
