@@ -1,15 +1,20 @@
 <div class="map">
-    @foreach($map as $rows)
+    @foreach($map as $y => $rows)
         <div class="map-row">
-            @foreach($rows as $cell)
-                <div class="cell valid-move">
+            @foreach($rows as $x => $cell)
+                <div class="cell valid-move {{ ($check['y'] == $y && $check['x'] == $x)?'check':'' }}">
                     @if($cell['type'] == "mine")
                         X
+                    @else
+                        {{-- {{ $x }}<br>{{ $y }} --}}
                     @endif
                 </div>
             @endforeach
         </div>
     @endforeach
+</div>
+<div>
+    {{ json_encode($check) }}
 </div>
 
 <style>
@@ -53,5 +58,8 @@
 }
 .cell.valid-move:hover{
     cursor: pointer;
+}
+.cell.check{
+    background: #f00;
 }
 </style>
