@@ -21,4 +21,41 @@ Route::get('/app', function () {
     return view('app');
 })->name('app');
 
+
+Route::get('/testgrid', function () {
+    // Settings
+    $map = [];
+    $mapSize = [
+        'x' => 50,
+        'y' => 25
+    ];
+    $mineCount = ceil(($mapSize['y'] * $mapSize['x']) * 0.5);
+
+    // Generate map
+    for($y = 0; $y < $mapSize['y']; $y++){
+        $map[$y] = [];
+        for($x = 0; $x < $mapSize['x']; $x++){
+            $map[$y][$x] = [
+                'type' => "unknown"
+            ];
+        }
+    }
+
+    // Generate mines
+    $mines = 0;
+    while($mines < $mineCount){
+        $x = rand(0, $mapSize['x'] - 1);
+        $y = rand(0, $mapSize['y'] - 1);
+
+        if($map[$y][$x]['type'] == "unknown"){
+            $map[$y][$x]['type'] = "mine";
+            $mines++;
+        }
+    }
+
+    return view('testgrid')->with([
+        'map' => $map
+    ]);
+})->name('map');
+
 Route::post('/message', 'MessageController@store')->name('message.store');
