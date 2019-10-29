@@ -28,6 +28,25 @@
                         <input name="message" v-model="playerMessage" class="form-control" />
                         <button class="btn btn-primary" @click.prevent="sendMessage">Send</button>
                         <p v-for="(msg, index) in messages" :key="index">{{ msg.timestamp }} - {{ msg.username }}: {{ msg.message }}</p>
+                        <div class="row mt-4">
+                            <div class="form-group col-md-4">
+                                <select multiple class="form-control" id="exampleFormControlSelect2">
+                                    <option>Players online</option>
+                                    <option>Player 1</option>
+                                    <option>Player 2</option>
+                                    <option>etc.</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <select multiple class="form-control" id="exampleFormControlSelect2">
+                                <option>Game Rooms</option>
+                                <option>Game room 1</option>
+                                <option>Game room 2</option>
+                                <option>etc.</option>
+                                </select>
+                            </div>
+                            <button type="button" class="btn btn-primary col-md-4">JOIN GAME</button>
+                        </div>
                     </div>
                 </div>
             </div>
