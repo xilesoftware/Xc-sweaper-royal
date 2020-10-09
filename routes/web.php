@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/timer', function () {
+    return view('timer');
+});
 
 Auth::routes();
 
