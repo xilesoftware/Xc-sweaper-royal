@@ -42,6 +42,8 @@
 
             .content {
                 text-align: center;
+                padding-top: 300px;
+                padding-bottom: 300px;
             }
 
             .title {
@@ -61,9 +63,6 @@
                 text-transform: uppercase;
             }
 
-            .m-b-md {
-                margin-bottom: 30px;
-            }
 
             h1 {
                 color: #96c32a; 
@@ -71,9 +70,14 @@
                 text-shadow: 3px 2px rgb(11, 128, 7);
                 font-size: 150px;
             }
+
         </style>
     </head>
     <body>
+<<<<<<< Updated upstream
+=======
+    
+>>>>>>> Stashed changes
         <div class= "content title">
             <input type="text" id="month" placeholder="Month">
             <input type="text" id="day" placeholder="Day">
@@ -82,19 +86,24 @@
             <input type="text" id="min" placeholder="Min">
             <input type="button" value="Submit" onclick="settimer();">
             <p id="timer_value"></p>
+<<<<<<< Updated upstream
             </div>
+=======
+        </div>
+>>>>>>> Stashed changes
         <div class="flex-center position-ref full-height">
-            
             <div class="content">
                 <h1 id="demo"></h1>
             </div>
         </div>
+    
     </body>
     <script>
 var timer;
 function settimer()
 {
  clearInterval(timer);
+<<<<<<< Updated upstream
 
  var timer_month=document.getElementById("month").value;
  var timer_day=document.getElementById("day").value;
@@ -112,6 +121,26 @@ function settimer()
  var hour = minute * 60; // Total Min In One Hour
  var day = hour * 24; // Total Hour In One Day
 
+=======
+
+ var timer_month=document.getElementById("month").value;
+ var timer_day=document.getElementById("day").value;
+ var timer_year=document.getElementById("year").value;
+ var timer_hour=document.getElementById("hour").value;
+ if(timer_hour=="")timer_hour=0;
+ var timer_min=document.getElementById("min").value;
+ if(timer_min=="")timer_min=0;
+
+ var timer_date=timer_month+"/"+timer_day+"/"+timer_year+" "+timer_hour+":"+timer_min;
+ var end = new Date(timer_date); // Arrange values in Date Time Format
+ var now = new Date(); // Get Current date time
+ var second = 1000; // Total Millisecond In One Sec
+ var minute = second * 60; // Total Sec In One Min
+ var hour = minute * 60; // Total Min In One Hour
+ var day = hour * 24; // Total Hour In One Day
+
+
+>>>>>>> Stashed changes
  function showtimer() {
   var now = new Date();
   var remain = end - now; // Get The Difference Between Current and entered date time
